@@ -1,62 +1,38 @@
-// import React from "react";
-// import ReactDOM from "react-dom/client";
-// import "./index.css";
-// function App() {
-//   return (
-//     <div className="card">
-//       <Avatar />
-//       <div className="data">
-//         <Introduction />
-//         <Skill_list />
-//       </div>
-//     </div>
-//   );
-// }
-// function Avatar() {
-//   return (
-//     <img className="avatar" src="jonas.jpeg" alt="Jonas Schmedtmann"></img>
-//   );
-// }
-// function Introduction() {
-//   return (
-//     <main>
-//       <h1>Mahdi Tavassoli</h1>
-//       <p>
-//         Full-stack web developer and teacher at Udemy. When not coding or
-//         preparing a course, I like to play board games, to cook (and eat), or to
-//         just enjoy the Portuguese sun at the beach.
-//       </p>
-//     </main>
-//   );
-// }
-// function Skill_list() {
-//   return (
-//     <div className="skill-lists">
-//       <Skill skill="React" emoji="👶" Color="blue" />
-//       <Skill skill="Html+Css" emoji="💪" Color="red" />
-//       <Skill skill="Git hub" emoji="👶" Color="orange" />
-//       <Skill skill="Java" emoji="💪" Color="green" />
-//       <Skill skill="C++" emoji="👶" Color="yellow" />
-//     </div>
-//   );
-// }
-// function Skill(props) {
-//   return (
-//     <div className="skill" style={{ backgroundColor: props.Color }}>
-//       <span>{props.skill}</span>
-//       <span>{props.emoji}</span>
-//     </div>
-//   );
-// }
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
+const skills = [
+  {
+    skill: "HTML+CSS",
+    level: "advanced",
+    color: "#2662EA",
+  },
+  {
+    skill: "JavaScript",
+    level: "advanced",
+    color: "#EFD81D",
+  },
+  {
+    skill: "Web Design",
+    level: "advanced",
+    color: "#C3DCAF",
+  },
+  {
+    skill: "Git and GitHub",
+    level: "intermediate",
+    color: "#E84F33",
+  },
+  {
+    skill: "React",
+    level: "advanced",
+    color: "#60DAFB",
+  },
+  {
+    skill: "Svelte",
+    level: "beginner",
+    color: "#FF3B00",
+  },
+];
 function App() {
   return (
     <div className="card">
@@ -93,20 +69,25 @@ function Intro() {
 }
 function SkillList() {
   return (
-    <div className="skill-lists ">
-      <Skill skill="React" emoji="👶" Color="blue" />
+    <div className="skill-lists">
+      {skills.map((skill) => (
+        <Skill skill={skill.skill} color={skill.color} level={skill.level} />
+      ))}
+      {/* <Skill skill="React" emoji="👶" Color="blue" />
       <Skill skill="Html+Css" emoji="💪" Color="red" />
       <Skill skill="Git hub" emoji="👶" Color="orange" />
       <Skill skill="Java" emoji="💪" Color="green" />
-      <Skill skill="C++" emoji="👶" Color="yellow" />
+      <Skill skill="C++" emoji="👶" Color="yellow" /> */}
     </div>
   );
 }
-function Skill(props) {
+function Skill({ skill, color, level }) {
   return (
-    <div className="skill" style={{ backgroundColor: props.Color }}>
-      <span>{props.skill}</span>
-      <span>{props.emoji}</span>
+    <div className="skill" style={{ backgroundColor: color }}>
+      <span>{skill}</span>
+      <span>{level === "advanced" && "💪"}</span>
+      <span>{level === "intermediate" && "👍"}</span>
+      <span>{level === "beginner" && "👶"}</span>
     </div>
   );
 }
